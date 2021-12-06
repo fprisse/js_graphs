@@ -1,0 +1,65 @@
+<html>
+<body>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="sankey_multiple" style="width: 900px; height: 300px;"></div>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["sankey"]});
+  google.charts.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'From');
+    data.addColumn('string', 'To');
+    data.addColumn('number', 'Volume');
+    data.addRows([
+       [ 'Raw-Milk-Storage', 'Seperator', 80 ],
+       [ 'S-SBM-Tank', 'Evaporator', 4 ],
+       [ 'S-SBM-Tank', 'Residu', 1 ],
+       [ 'Seperator', 'Cream-Tank', 8],
+       [ 'Seperator', 'Skimmed-Milk-Tank', 70] ,
+       [ 'Seperator', 'Slush-Tank', 1 ],
+       [ 'Seperator', 'Residu', 1 ],
+       [ 'Skimmed-Milk-Tank', 'Evaporator', 70 ],
+       [ 'Skimmed-Milk-Tank', 'IC-PAVE', 1 ],
+       [ 'Skimmed-Milk-Tank', 'Residu', 1 ],
+       [ 'Cream-Tank', 'Evaporator', 4 ],
+       [ 'Cream-Tank', 'IC-PAVE', 3 ],
+       [ 'Cream-Tank', 'Residu', 1 ],
+       [ 'Slush-Tank', 'Animal-Feed', 1 ],
+       [ 'Raw-Milk-Storage', 'Evaporator', 10 ],
+       [ 'Raw-Milk-Storage', 'Residu', 1 ],
+       [ 'Evaporator', 'h2oVapour', 40],
+       [ 'Evaporator', 'S1-Storage', 30],
+       [ 'Evaporator', 'S2-Storage',20],
+       [ 'Evaporator', 'Residu', 1,],
+
+    ]);
+
+    // Set chart options
+
+    var colors = ['#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f',
+                  '#cab2d6', '#ffff99', '#1f78b4', '#33a02c'];
+
+    var options = {
+      width: 1200,
+      height: 600,
+      sankey: {
+        node: {
+          colors: colors, nodePadding: 20
+        },
+        link: {
+          colorMode: 'gradient',
+          colors: colors
+        }
+      }
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+    chart.draw(data, options);
+   }
+</script>
+</body>
+<!-- https://developers.google.com/chart/interactive/docs/gallery/sankey-->
+</html>
