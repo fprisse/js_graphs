@@ -1,0 +1,63 @@
+<html>
+<body>
+ <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<div id="sankey_multiple" style="width: 900px; height: 300px;"></div>
+
+<script type="text/javascript">
+  google.charts.load("current", {packages:["sankey"]});
+  google.charts.setOnLoadCallback(drawChart);
+   function drawChart() {
+    var data = new google.visualization.DataTable();
+    data.addColumn('string', 'From');
+    data.addColumn('string', 'To');
+    data.addColumn('number', 'Volume');
+    data.addRows([
+       [ 'S1-Storage','Blender',  30],
+       [ 'S2-Storage','Blender',  10],
+       [ 'CS-15','Blender',  2],
+       [ 'MP-15','Blender',  2],
+       [ 'UFP-18','Blender',  2],
+       [ 'Lactose','Blender',  2],
+       [ 'Blender','Concentrate-Manifold',  48],
+       [ 'Blender', 'Concentrate-Tank 01', 24 ],
+       [ 'Blender', 'Concentrate-Tank 02', 24 ],
+       [ 'Blender', 'Concentrate-Tank 03', 0 ],
+       [ 'Blender', 'Concentrate-Tank 04', 0 ],
+       [ 'Blender', 'Concentrate-Tank 05', 0 ],
+       [ 'Blender', 'Concentrate-Tank 06', 0 ],
+       [ 'Blender', 'Concentrate-Tank 07', 0 ],
+       [ 'Blender', 'Concentrate-Tank 08', 0 ],
+       [ 'Blender', 'Concentrate-Tank 09', 0 ],
+       [ 'Blender', 'Concentrate-Tank 10', 0 ],
+       [ 'Blender', 'Concentrate-Tank 11', 0 ],
+       [ 'Blender', 'Concentrate-Tank 12', 0 ],
+    ]);
+
+    // Set chart options
+
+    var colors = ['#a6cee3', '#b2df8a', '#fb9a99', '#fdbf6f',
+                  '#cab2d6', '#ffff99', '#1f78b4', '#33a02c'];
+
+    var options = {
+      width: 1200,
+      height: 600,
+      sankey: {
+        node: {
+          colors: colors, nodePadding: 20
+        },
+        link: {
+          colorMode: 'gradient',
+          colors: colors
+        }
+      }
+    };
+
+    // Instantiate and draw our chart, passing in some options.
+    var chart = new google.visualization.Sankey(document.getElementById('sankey_multiple'));
+    chart.draw(data, options);
+   }
+</script>
+</body>
+<!-- https://developers.google.com/chart/interactive/docs/gallery/sankey-->
+</html>
